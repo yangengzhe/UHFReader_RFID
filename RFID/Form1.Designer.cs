@@ -63,6 +63,7 @@
             this.listViewCol_ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listViewCol_Length = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listViewCol_Times = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listViewCol_timestamp = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.CheckBox_TID = new System.Windows.Forms.CheckBox();
             this.groupBox33 = new System.Windows.Forms.GroupBox();
@@ -96,9 +97,9 @@
             this.GroupBox1.Controls.Add(this.Label2);
             this.GroupBox1.Controls.Add(this.ComboBox_COM);
             this.GroupBox1.Controls.Add(this.Label1);
-            this.GroupBox1.Location = new System.Drawing.Point(22, 12);
+            this.GroupBox1.Location = new System.Drawing.Point(12, 12);
             this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Size = new System.Drawing.Size(191, 372);
+            this.GroupBox1.Size = new System.Drawing.Size(141, 250);
             this.GroupBox1.TabIndex = 41;
             this.GroupBox1.TabStop = false;
             this.GroupBox1.Text = "通讯";
@@ -113,15 +114,15 @@
             "38400bps",
             "57600bps",
             "115200bps"});
-            this.ComboBox_baud.Location = new System.Drawing.Point(5, 191);
+            this.ComboBox_baud.Location = new System.Drawing.Point(5, 197);
             this.ComboBox_baud.Name = "ComboBox_baud";
-            this.ComboBox_baud.Size = new System.Drawing.Size(121, 20);
+            this.ComboBox_baud.Size = new System.Drawing.Size(125, 20);
             this.ComboBox_baud.TabIndex = 14;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 176);
+            this.label16.Location = new System.Drawing.Point(6, 180);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(47, 12);
             this.label16.TabIndex = 13;
@@ -137,15 +138,15 @@
             "38400bps",
             "57600bps",
             "115200bps"});
-            this.ComboBox_baud2.Location = new System.Drawing.Point(7, 110);
+            this.ComboBox_baud2.Location = new System.Drawing.Point(5, 113);
             this.ComboBox_baud2.Name = "ComboBox_baud2";
-            this.ComboBox_baud2.Size = new System.Drawing.Size(121, 20);
+            this.ComboBox_baud2.Size = new System.Drawing.Size(125, 20);
             this.ComboBox_baud2.TabIndex = 12;
             // 
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(6, 95);
+            this.label47.Location = new System.Drawing.Point(6, 96);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(47, 12);
             this.label47.TabIndex = 9;
@@ -155,7 +156,7 @@
             // 
             this.ComboBox_AlreadyOpenCOM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBox_AlreadyOpenCOM.FormattingEnabled = true;
-            this.ComboBox_AlreadyOpenCOM.Location = new System.Drawing.Point(5, 153);
+            this.ComboBox_AlreadyOpenCOM.Location = new System.Drawing.Point(5, 155);
             this.ComboBox_AlreadyOpenCOM.Name = "ComboBox_AlreadyOpenCOM";
             this.ComboBox_AlreadyOpenCOM.Size = new System.Drawing.Size(125, 20);
             this.ComboBox_AlreadyOpenCOM.TabIndex = 7;
@@ -163,7 +164,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 136);
+            this.label3.Location = new System.Drawing.Point(6, 138);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 12);
             this.label3.TabIndex = 6;
@@ -172,7 +173,7 @@
             // ClosePort
             // 
             this.ClosePort.Enabled = false;
-            this.ClosePort.Location = new System.Drawing.Point(3, 325);
+            this.ClosePort.Location = new System.Drawing.Point(5, 222);
             this.ClosePort.Name = "ClosePort";
             this.ClosePort.Size = new System.Drawing.Size(125, 23);
             this.ClosePort.TabIndex = 5;
@@ -182,7 +183,7 @@
             // 
             // OpenPort
             // 
-            this.OpenPort.Location = new System.Drawing.Point(5, 66);
+            this.OpenPort.Location = new System.Drawing.Point(5, 68);
             this.OpenPort.Name = "OpenPort";
             this.OpenPort.Size = new System.Drawing.Size(125, 23);
             this.OpenPort.TabIndex = 4;
@@ -193,7 +194,7 @@
             // Edit_CmdComAddr
             // 
             this.Edit_CmdComAddr.BackColor = System.Drawing.SystemColors.Window;
-            this.Edit_CmdComAddr.Location = new System.Drawing.Point(98, 39);
+            this.Edit_CmdComAddr.Location = new System.Drawing.Point(98, 42);
             this.Edit_CmdComAddr.MaxLength = 2;
             this.Edit_CmdComAddr.Name = "Edit_CmdComAddr";
             this.Edit_CmdComAddr.Size = new System.Drawing.Size(32, 21);
@@ -203,17 +204,17 @@
             // Label2
             // 
             this.Label2.AutoSize = true;
-            this.Label2.Location = new System.Drawing.Point(6, 42);
+            this.Label2.Location = new System.Drawing.Point(6, 46);
             this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(71, 12);
+            this.Label2.Size = new System.Drawing.Size(77, 12);
             this.Label2.TabIndex = 2;
-            this.Label2.Text = "读写器地址:";
+            this.Label2.Text = "读写器地址：";
             // 
             // ComboBox_COM
             // 
             this.ComboBox_COM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBox_COM.FormattingEnabled = true;
-            this.ComboBox_COM.Location = new System.Drawing.Point(65, 13);
+            this.ComboBox_COM.Location = new System.Drawing.Point(66, 17);
             this.ComboBox_COM.Name = "ComboBox_COM";
             this.ComboBox_COM.Size = new System.Drawing.Size(65, 20);
             this.ComboBox_COM.TabIndex = 1;
@@ -221,7 +222,7 @@
             // Label1
             // 
             this.Label1.AutoSize = true;
-            this.Label1.Location = new System.Drawing.Point(5, 21);
+            this.Label1.Location = new System.Drawing.Point(6, 21);
             this.Label1.Name = "Label1";
             this.Label1.Size = new System.Drawing.Size(41, 12);
             this.Label1.TabIndex = 0;
@@ -243,18 +244,18 @@
             this.groupBox2.Controls.Add(this.Edit_Type);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Location = new System.Drawing.Point(235, 25);
+            this.groupBox2.Location = new System.Drawing.Point(159, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(663, 106);
+            this.groupBox2.Size = new System.Drawing.Size(656, 82);
             this.groupBox2.TabIndex = 42;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "读写器信息";
             // 
             // Button3
             // 
-            this.Button3.Location = new System.Drawing.Point(538, 76);
+            this.Button3.Location = new System.Drawing.Point(582, 17);
             this.Button3.Name = "Button3";
-            this.Button3.Size = new System.Drawing.Size(118, 23);
+            this.Button3.Size = new System.Drawing.Size(62, 52);
             this.Button3.TabIndex = 17;
             this.Button3.Text = "获取读写器信息";
             this.Button3.UseVisualStyleBackColor = true;
@@ -263,7 +264,7 @@
             // Edit_scantime
             // 
             this.Edit_scantime.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.Edit_scantime.Location = new System.Drawing.Point(538, 49);
+            this.Edit_scantime.Location = new System.Drawing.Point(444, 49);
             this.Edit_scantime.Name = "Edit_scantime";
             this.Edit_scantime.Size = new System.Drawing.Size(118, 21);
             this.Edit_scantime.TabIndex = 16;
@@ -271,7 +272,7 @@
             // EPCC1G2
             // 
             this.EPCC1G2.AutoSize = true;
-            this.EPCC1G2.Location = new System.Drawing.Point(538, 32);
+            this.EPCC1G2.Location = new System.Drawing.Point(444, 32);
             this.EPCC1G2.Name = "EPCC1G2";
             this.EPCC1G2.Size = new System.Drawing.Size(72, 16);
             this.EPCC1G2.TabIndex = 15;
@@ -281,7 +282,7 @@
             // ISO180006B
             // 
             this.ISO180006B.AutoSize = true;
-            this.ISO180006B.Location = new System.Drawing.Point(538, 13);
+            this.ISO180006B.Location = new System.Drawing.Point(444, 13);
             this.ISO180006B.Name = "ISO180006B";
             this.ISO180006B.Size = new System.Drawing.Size(90, 16);
             this.ISO180006B.TabIndex = 14;
@@ -291,7 +292,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(402, 53);
+            this.label11.Location = new System.Drawing.Point(308, 53);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(125, 12);
             this.label11.TabIndex = 13;
@@ -300,7 +301,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(402, 21);
+            this.label10.Location = new System.Drawing.Point(308, 21);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(59, 12);
             this.label10.TabIndex = 12;
@@ -309,7 +310,7 @@
             // Edit_powerdBm
             // 
             this.Edit_powerdBm.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.Edit_powerdBm.Location = new System.Drawing.Point(286, 50);
+            this.Edit_powerdBm.Location = new System.Drawing.Point(192, 50);
             this.Edit_powerdBm.Name = "Edit_powerdBm";
             this.Edit_powerdBm.Size = new System.Drawing.Size(100, 21);
             this.Edit_powerdBm.TabIndex = 10;
@@ -317,7 +318,7 @@
             // Edit_Version
             // 
             this.Edit_Version.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.Edit_Version.Location = new System.Drawing.Point(286, 18);
+            this.Edit_Version.Location = new System.Drawing.Point(192, 18);
             this.Edit_Version.Name = "Edit_Version";
             this.Edit_Version.Size = new System.Drawing.Size(100, 21);
             this.Edit_Version.TabIndex = 9;
@@ -325,7 +326,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(197, 53);
+            this.label8.Location = new System.Drawing.Point(149, 53);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(35, 12);
             this.label8.TabIndex = 7;
@@ -334,7 +335,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(197, 21);
+            this.label7.Location = new System.Drawing.Point(149, 21);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 12);
             this.label7.TabIndex = 6;
@@ -343,7 +344,7 @@
             // Edit_ComAdr
             // 
             this.Edit_ComAdr.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.Edit_ComAdr.Location = new System.Drawing.Point(95, 50);
+            this.Edit_ComAdr.Location = new System.Drawing.Point(47, 50);
             this.Edit_ComAdr.Name = "Edit_ComAdr";
             this.Edit_ComAdr.Size = new System.Drawing.Size(85, 21);
             this.Edit_ComAdr.TabIndex = 4;
@@ -351,7 +352,7 @@
             // Edit_Type
             // 
             this.Edit_Type.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.Edit_Type.Location = new System.Drawing.Point(95, 18);
+            this.Edit_Type.Location = new System.Drawing.Point(47, 18);
             this.Edit_Type.Name = "Edit_Type";
             this.Edit_Type.Size = new System.Drawing.Size(85, 21);
             this.Edit_Type.TabIndex = 3;
@@ -377,9 +378,9 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.ListView1_EPC);
-            this.groupBox4.Location = new System.Drawing.Point(243, 148);
+            this.groupBox4.Location = new System.Drawing.Point(159, 100);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(480, 162);
+            this.groupBox4.Size = new System.Drawing.Size(656, 162);
             this.groupBox4.TabIndex = 43;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "标签显示";
@@ -393,13 +394,14 @@
             this.listViewCol_Number,
             this.listViewCol_ID,
             this.listViewCol_Length,
-            this.listViewCol_Times});
+            this.listViewCol_Times,
+            this.listViewCol_timestamp});
             this.ListView1_EPC.Dock = System.Windows.Forms.DockStyle.Top;
             this.ListView1_EPC.FullRowSelect = true;
             this.ListView1_EPC.GridLines = true;
             this.ListView1_EPC.Location = new System.Drawing.Point(3, 17);
             this.ListView1_EPC.Name = "ListView1_EPC";
-            this.ListView1_EPC.Size = new System.Drawing.Size(474, 138);
+            this.ListView1_EPC.Size = new System.Drawing.Size(650, 138);
             this.ListView1_EPC.TabIndex = 1;
             this.ListView1_EPC.UseCompatibleStateImageBehavior = false;
             this.ListView1_EPC.View = System.Windows.Forms.View.Details;
@@ -412,16 +414,21 @@
             // listViewCol_ID
             // 
             this.listViewCol_ID.Text = "EPC号";
-            this.listViewCol_ID.Width = 150;
+            this.listViewCol_ID.Width = 200;
             // 
             // listViewCol_Length
             // 
             this.listViewCol_Length.Text = "EPC长度";
-            this.listViewCol_Length.Width = 150;
             // 
             // listViewCol_Times
             // 
             this.listViewCol_Times.Text = "次数";
+            this.listViewCol_Times.Width = 75;
+            // 
+            // listViewCol_timestamp
+            // 
+            this.listViewCol_timestamp.Text = "时间";
+            this.listViewCol_timestamp.Width = 200;
             // 
             // groupBox12
             // 
@@ -430,9 +437,9 @@
             this.groupBox12.Controls.Add(this.button2);
             this.groupBox12.Controls.Add(this.ComboBox_IntervalTime);
             this.groupBox12.Controls.Add(this.label23);
-            this.groupBox12.Location = new System.Drawing.Point(246, 337);
+            this.groupBox12.Location = new System.Drawing.Point(12, 268);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(325, 93);
+            this.groupBox12.Size = new System.Drawing.Size(803, 93);
             this.groupBox12.TabIndex = 44;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "询查标签";
@@ -532,11 +539,11 @@
             // 
             // Log_Box
             // 
-            this.Log_Box.Location = new System.Drawing.Point(258, 436);
+            this.Log_Box.Location = new System.Drawing.Point(12, 367);
             this.Log_Box.Multiline = true;
             this.Log_Box.Name = "Log_Box";
             this.Log_Box.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.Log_Box.Size = new System.Drawing.Size(433, 88);
+            this.Log_Box.Size = new System.Drawing.Size(803, 130);
             this.Log_Box.TabIndex = 45;
             this.Log_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Log_Box_KeyPress);
             // 
@@ -544,7 +551,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(949, 562);
+            this.ClientSize = new System.Drawing.Size(824, 509);
             this.Controls.Add(this.Log_Box);
             this.Controls.Add(this.groupBox12);
             this.Controls.Add(this.groupBox4);
@@ -616,6 +623,7 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Timer Timer_Scan;
         private System.Windows.Forms.TextBox Log_Box;
+        private System.Windows.Forms.ColumnHeader listViewCol_timestamp;
     }
 }
 

@@ -19,9 +19,11 @@ namespace RFID
         private int fOpenComIndex;//已经打开的端口
         private bool ComOpen;//是否打开端口
         private bool fIsInventoryScan;//是否开始扫描
+        private bool fIsInvoke;//是否执行
         private int fCmdRet; //所有执行指令的返回值
         private bool fAppClosed; //在测试模式下响应关闭应用程序
-        Dictionary<String, int> epcs = new Dictionary<String, int>();//创建集合
+        Dictionary<String, RfidCard> epcs = new Dictionary<String, RfidCard>();//搜索的卡片
+        Dictionary<String, RfidCard> window_epcs = new Dictionary<String, RfidCard>();//新获卡，待处理窗口
         public Form1()
         {
             InitializeComponent();
@@ -38,6 +40,7 @@ namespace RFID
             ComOpen = false;
             Timer_Scan.Enabled = false;
             fIsInventoryScan = false;
+            fIsInvoke = false;
             button2.Enabled = false;
             button2.Text = "查询标签";
             ClosePort.Enabled = false;
@@ -338,23 +341,36 @@ namespace RFID
                     if (sEPC.Length != EPClen * 2)//验证EPC正确性
                         return;
 
-                    if (epcs.ContainsKey(sEPC))
-                        epcs[sEPC]++;
+                    if (epcs.ContainsKey(sEPC))//存在卡
+                    {
+                        if (epcs[sEPC].add_refresh())//刷新
+                        {
+                            if(!window_epcs.ContainsKey(sEPC))
+                                window_epcs.Add(sEPC, epcs[sEPC]);
+                            else window_epcs[sEPC] = epcs[sEPC];
+                        }
+                    }
                     else
-                        epcs.Add(sEPC,1);
+                    {
+                        epcs.Add(sEPC, new RfidCard(sEPC));
+                        if (!window_epcs.ContainsKey(sEPC))
+                            window_epcs.Add(sEPC, epcs[sEPC]);
+                        else window_epcs[sEPC] = epcs[sEPC];
+                    }
                 }
 
                 //更新列表
                 ListView1_EPC.Items.Clear();
                 ListView1_EPC.BeginUpdate();
                 int temp = 0;
-                foreach(KeyValuePair<String,int> epc in epcs){
+                foreach(KeyValuePair<String,RfidCard> epc in epcs){
                     temp++;
                     ListViewItem lvi = new ListViewItem();
                     lvi.Text = temp.ToString();
                     lvi.SubItems.Add(epc.Key);
                     lvi.SubItems.Add(epc.Key.Length.ToString());
-                    lvi.SubItems.Add(epc.Value.ToString());
+                    lvi.SubItems.Add(epc.Value.times.ToString());
+                    lvi.SubItems.Add(util.Long2Time(epc.Value.timestamp));
                     ListView1_EPC.Items.Add(lvi);
                 }
                 ListView1_EPC.EndUpdate();
@@ -368,9 +384,10 @@ namespace RFID
         //定时器
         private void Timer_Scan_Tick(object sender, EventArgs e)
         {
-            if (fIsInventoryScan)
-                return;
-            Inventory();
+            if (!fIsInventoryScan)
+                Inventory();
+            if (!fIsInvoke)
+                fun_invoke();
         }
         //查询按钮
         private void button2_Click(object sender, EventArgs e)
@@ -392,6 +409,7 @@ namespace RFID
 
                 ListView1_EPC.Items.Clear();
                 epcs.Clear();
+                window_epcs.Clear();
                 button2.Text = "停止";
                 write_log("开始查询 时间间隔：" + ComboBox_IntervalTime.SelectedItem.ToString());
             }else//停止查询
@@ -423,8 +441,21 @@ namespace RFID
         {
             e.Handled = true;
         }
+        //处理新卡的函数
+        private void fun_invoke()
+        {
+            fIsInvoke = true;
+            while (window_epcs.Count != 0)
+            {
+                KeyValuePair<String, RfidCard> epc = window_epcs.First();
+                RfidCard rc = epc.Value;
+                //do something
 
-
+                write_log("新刷卡：" + rc.epc + " 时间：" + util.Long2Time(rc.timestamp));
+                window_epcs.Remove(epc.Key);
+            }
+            fIsInvoke = false;
+        }
 
     }
 }

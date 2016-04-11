@@ -8,7 +8,7 @@ namespace RFID
 {
     class RfidCard
     {
-        public static const long refresh_time = 1000;//ms
+        public const long refresh_time = 10;//s
         public String epc;
         public int times;
         public long timestamp;
@@ -17,8 +17,7 @@ namespace RFID
         {
             epc = t_epc;
             times = 1;
-            TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            timestamp = Convert.ToInt64(ts.TotalSeconds);
+            timestamp = util.Time2Long(DateTime.UtcNow);
         }
         public bool add_refresh()
         {
