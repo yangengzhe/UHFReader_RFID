@@ -18,7 +18,10 @@ namespace RFID
         private int frmcomportindex;//传回，打开的端口
         private int fOpenComIndex;//已经打开的端口
         private bool ComOpen;//是否打开端口
+        private bool fIsInventoryScan;//是否开始扫描
         private int fCmdRet; //所有执行指令的返回值
+        private bool fAppClosed; //在测试模式下响应关闭应用程序
+        Dictionary<String, int> epcs = new Dictionary<String, int>();//创建集合
         public Form1()
         {
             InitializeComponent();
@@ -33,11 +36,22 @@ namespace RFID
             ComboBox_AlreadyOpenCOM.Refresh();
             Button3.Enabled = false;
             ComOpen = false;
+            Timer_Scan.Enabled = false;
+            fIsInventoryScan = false;
+            button2.Enabled = false;
         }
         //连接端口
         private void openCom_view()
         {
             Button3.Enabled = true;
+            button2.Enabled = true;
+            int i = 0;
+            while (i <= 300)
+            {
+                ComboBox_IntervalTime.Items.Add(Convert.ToString(i) + "ms");
+                i = i + 10;
+            }
+            ComboBox_IntervalTime.SelectedIndex = 10;
         }
         //初始化端口列表
         private void InitComList()
@@ -163,7 +177,7 @@ namespace RFID
                 frmcomportindex = Convert.ToInt32(temp.Substring(3, temp.Length - 3));
             }
         }
-
+        //获得读写器信息
         private void Button3_Click(object sender, EventArgs e)
         {
             byte[] TrType = new byte[2];
@@ -180,8 +194,6 @@ namespace RFID
             ISO180006B.Checked = false;
             EPCC1G2.Checked = false;
             Edit_powerdBm.Text = "";
-            Edit_dminfre.Text = "";
-            Edit_dmaxfre.Text = "";
             fCmdRet = StaticClassReaderB.GetReaderInformation(ref fComAdr, VersionInfo, ref ReaderType, TrType, ref dmaxfre, ref dminfre, ref powerdBm, ref ScanTime, frmcomportindex);
             if (fCmdRet == 0)
             {
@@ -209,7 +221,7 @@ namespace RFID
                 }
             }
         }
-
+        //关闭端口按钮
         private void ClosePort_Click(object sender, EventArgs e)
         {
             int port;
@@ -252,8 +264,147 @@ namespace RFID
                 ComboBox_AlreadyOpenCOM.SelectedIndex = 0;
             else
             {
+                if (Timer_Scan.Enabled)
+                    button2_Click(sender, e); //关闭查询
                 reset_view();
             }
         }
+        //选择间隔时间
+        private void ComboBox_IntervalTime_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ComboBox_IntervalTime.SelectedIndex < 6)
+                Timer_Scan.Interval = 100;
+            else
+                Timer_Scan.Interval = (ComboBox_IntervalTime.SelectedIndex + 4) * 10;
+        }
+        //关闭窗口
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            reset_view();
+            fAppClosed = true;
+            StaticClassReaderB.CloseComPort();
+        }
+        //扫描的方法
+        private void Inventory()
+        {
+            int CardNum = 0;
+            int Totallen = 0;
+            int EPClen, m;
+            byte[] EPC = new byte[5000];
+            int CardIndex;
+            string fInventory_EPC;
+            string sEPC;
+            fIsInventoryScan = true;
+            byte AdrTID = 0;
+            byte LenTID = 0;
+            byte TIDFlag = 0;
+
+            if (CheckBox_TID.Checked)
+            {
+                AdrTID = Convert.ToByte(textBox4.Text, 16);
+                LenTID = Convert.ToByte(textBox5.Text, 16);
+                TIDFlag = 1;
+            }
+            else
+            {
+                AdrTID = 0;
+                LenTID = 0;
+                TIDFlag = 0;
+            }
+            fCmdRet = StaticClassReaderB.Inventory_G2(ref fComAdr, AdrTID, LenTID, TIDFlag, EPC, ref Totallen, ref CardNum, frmcomportindex);
+            if ((fCmdRet == 1) | (fCmdRet == 2) | (fCmdRet == 3) | (fCmdRet == 4) | (fCmdRet == 0xFB))//代表已查找结束，
+            {
+                byte[] daw = new byte[Totallen];
+                Array.Copy(EPC, daw, Totallen);
+                fInventory_EPC = ByteArrayToHexString(daw);
+                m = 0;
+                if (CardNum == 0)//没有找到卡
+                {
+                    fIsInventoryScan = false;
+                    return;
+                }
+                for (CardIndex = 0; CardIndex < CardNum; CardIndex++)
+                {
+                    EPClen = daw[m];
+                    sEPC = fInventory_EPC.Substring(m * 2 + 2, EPClen * 2);//sEPC为结果的
+                    m = m + EPClen + 1;
+                    if (sEPC.Length != EPClen * 2)//验证EPC正确性
+                        return;
+
+                    if (epcs.ContainsKey(sEPC))
+                        epcs[sEPC]++;
+                    else
+                        epcs.Add(sEPC,1);
+                }
+
+                //更新列表
+                ListView1_EPC.Items.Clear();
+                ListView1_EPC.BeginUpdate();
+                int temp = 0;
+                foreach(KeyValuePair<String,int> epc in epcs){
+                    temp++;
+                    ListViewItem lvi = new ListViewItem();
+                    lvi.Text = temp.ToString();
+                    lvi.SubItems.Add(epc.Key);
+                    lvi.SubItems.Add(epc.Key.Length.ToString());
+                    lvi.SubItems.Add(epc.Value.ToString());
+                    ListView1_EPC.Items.Add(lvi);
+                }
+                ListView1_EPC.EndUpdate();
+
+            }
+
+            fIsInventoryScan = false;
+            if (fAppClosed)
+                Close();
+        }
+        //定时器
+        private void Timer_Scan_Tick(object sender, EventArgs e)
+        {
+            if (fIsInventoryScan)
+                return;
+            Inventory();
+        }
+        //查询按钮
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (CheckBox_TID.Checked)
+            {
+                if ((textBox4.Text.Length) != 2 || ((textBox5.Text.Length) != 2))
+                {
+                     MessageBox.Show( "TID询查参数错误！");
+                    return;
+                }
+            }
+            Timer_Scan.Enabled = !Timer_Scan.Enabled;
+            if (Timer_Scan.Enabled)//开始查询
+            {
+                textBox4.Enabled = false;
+                textBox5.Enabled = false;
+                CheckBox_TID.Enabled = false;
+
+                ListView1_EPC.Items.Clear();
+                epcs.Clear();
+                button2.Text = "停止";
+            }else//停止查询
+            {
+                textBox4.Enabled = true;
+                textBox5.Enabled = true;
+                CheckBox_TID.Enabled = true;
+                button2.Text = "查询标签";
+            }
+        }
+
+        private string ByteArrayToHexString(byte[] data)
+        {
+            StringBuilder sb = new StringBuilder(data.Length * 3);
+            foreach (byte b in data)
+                sb.Append(Convert.ToString(b, 16).PadLeft(2, '0'));
+            return sb.ToString().ToUpper();
+
+        }
+
+
+
     }
 }

@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this.ComboBox_baud = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.ComboBox_baud2 = new System.Windows.Forms.ComboBox();
             this.label47 = new System.Windows.Forms.Label();
             this.ComboBox_AlreadyOpenCOM = new System.Windows.Forms.ComboBox();
@@ -39,8 +42,6 @@
             this.Label2 = new System.Windows.Forms.Label();
             this.ComboBox_COM = new System.Windows.Forms.ComboBox();
             this.Label1 = new System.Windows.Forms.Label();
-            this.ComboBox_baud = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Button3 = new System.Windows.Forms.Button();
             this.Edit_scantime = new System.Windows.Forms.TextBox();
@@ -48,20 +49,36 @@
             this.ISO180006B = new System.Windows.Forms.CheckBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.Edit_dmaxfre = new System.Windows.Forms.TextBox();
             this.Edit_powerdBm = new System.Windows.Forms.TextBox();
             this.Edit_Version = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.Edit_dminfre = new System.Windows.Forms.TextBox();
             this.Edit_ComAdr = new System.Windows.Forms.TextBox();
             this.Edit_Type = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.ListView1_EPC = new System.Windows.Forms.ListView();
+            this.listViewCol_Number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listViewCol_ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listViewCol_Length = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listViewCol_Times = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.CheckBox_TID = new System.Windows.Forms.CheckBox();
+            this.groupBox33 = new System.Windows.Forms.GroupBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label55 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label54 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.ComboBox_IntervalTime = new System.Windows.Forms.ComboBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.Timer_Scan = new System.Windows.Forms.Timer(this.components);
             this.GroupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.groupBox33.SuspendLayout();
             this.SuspendLayout();
             // 
             // GroupBox1
@@ -84,6 +101,30 @@
             this.GroupBox1.TabIndex = 41;
             this.GroupBox1.TabStop = false;
             this.GroupBox1.Text = "通讯";
+            // 
+            // ComboBox_baud
+            // 
+            this.ComboBox_baud.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBox_baud.FormattingEnabled = true;
+            this.ComboBox_baud.Items.AddRange(new object[] {
+            "9600bps",
+            "19200bps",
+            "38400bps",
+            "57600bps",
+            "115200bps"});
+            this.ComboBox_baud.Location = new System.Drawing.Point(5, 191);
+            this.ComboBox_baud.Name = "ComboBox_baud";
+            this.ComboBox_baud.Size = new System.Drawing.Size(121, 20);
+            this.ComboBox_baud.TabIndex = 14;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 176);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(47, 12);
+            this.label16.TabIndex = 13;
+            this.label16.Text = "波特率:";
             // 
             // ComboBox_baud2
             // 
@@ -184,30 +225,6 @@
             this.Label1.TabIndex = 0;
             this.Label1.Text = "端口：";
             // 
-            // ComboBox_baud
-            // 
-            this.ComboBox_baud.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBox_baud.FormattingEnabled = true;
-            this.ComboBox_baud.Items.AddRange(new object[] {
-            "9600bps",
-            "19200bps",
-            "38400bps",
-            "57600bps",
-            "115200bps"});
-            this.ComboBox_baud.Location = new System.Drawing.Point(5, 191);
-            this.ComboBox_baud.Name = "ComboBox_baud";
-            this.ComboBox_baud.Size = new System.Drawing.Size(121, 20);
-            this.ComboBox_baud.TabIndex = 14;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 176);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(47, 12);
-            this.label16.TabIndex = 13;
-            this.label16.Text = "波特率:";
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.Button3);
@@ -216,16 +233,12 @@
             this.groupBox2.Controls.Add(this.ISO180006B);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.Edit_dmaxfre);
             this.groupBox2.Controls.Add(this.Edit_powerdBm);
             this.groupBox2.Controls.Add(this.Edit_Version);
-            this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.Edit_dminfre);
             this.groupBox2.Controls.Add(this.Edit_ComAdr);
             this.groupBox2.Controls.Add(this.Edit_Type);
-            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Location = new System.Drawing.Point(235, 25);
@@ -291,14 +304,6 @@
             this.label10.TabIndex = 12;
             this.label10.Text = "支持协议:";
             // 
-            // Edit_dmaxfre
-            // 
-            this.Edit_dmaxfre.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.Edit_dmaxfre.Location = new System.Drawing.Point(286, 78);
-            this.Edit_dmaxfre.Name = "Edit_dmaxfre";
-            this.Edit_dmaxfre.Size = new System.Drawing.Size(100, 21);
-            this.Edit_dmaxfre.TabIndex = 11;
-            // 
             // Edit_powerdBm
             // 
             this.Edit_powerdBm.BackColor = System.Drawing.SystemColors.ScrollBar;
@@ -314,15 +319,6 @@
             this.Edit_Version.Name = "Edit_Version";
             this.Edit_Version.Size = new System.Drawing.Size(100, 21);
             this.Edit_Version.TabIndex = 9;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(197, 81);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 12);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "最高频率：";
             // 
             // label8
             // 
@@ -342,14 +338,6 @@
             this.label7.TabIndex = 6;
             this.label7.Text = "版本:";
             // 
-            // Edit_dminfre
-            // 
-            this.Edit_dminfre.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.Edit_dminfre.Location = new System.Drawing.Point(95, 78);
-            this.Edit_dminfre.Name = "Edit_dminfre";
-            this.Edit_dminfre.Size = new System.Drawing.Size(85, 21);
-            this.Edit_dminfre.TabIndex = 5;
-            // 
             // Edit_ComAdr
             // 
             this.Edit_ComAdr.BackColor = System.Drawing.SystemColors.ScrollBar;
@@ -365,15 +353,6 @@
             this.Edit_Type.Name = "Edit_Type";
             this.Edit_Type.Size = new System.Drawing.Size(85, 21);
             this.Edit_Type.TabIndex = 3;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 81);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 12);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "最低频率：";
             // 
             // label5
             // 
@@ -393,20 +372,184 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "型号:";
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.ListView1_EPC);
+            this.groupBox4.Location = new System.Drawing.Point(243, 148);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(480, 162);
+            this.groupBox4.TabIndex = 43;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "标签显示";
+            // 
+            // ListView1_EPC
+            // 
+            this.ListView1_EPC.AccessibleRole = System.Windows.Forms.AccessibleRole.IpAddress;
+            this.ListView1_EPC.AutoArrange = false;
+            this.ListView1_EPC.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ListView1_EPC.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewCol_Number,
+            this.listViewCol_ID,
+            this.listViewCol_Length,
+            this.listViewCol_Times});
+            this.ListView1_EPC.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ListView1_EPC.FullRowSelect = true;
+            this.ListView1_EPC.GridLines = true;
+            this.ListView1_EPC.Location = new System.Drawing.Point(3, 17);
+            this.ListView1_EPC.Name = "ListView1_EPC";
+            this.ListView1_EPC.Size = new System.Drawing.Size(474, 138);
+            this.ListView1_EPC.TabIndex = 1;
+            this.ListView1_EPC.UseCompatibleStateImageBehavior = false;
+            this.ListView1_EPC.View = System.Windows.Forms.View.Details;
+            // 
+            // listViewCol_Number
+            // 
+            this.listViewCol_Number.Text = "序号";
+            this.listViewCol_Number.Width = 40;
+            // 
+            // listViewCol_ID
+            // 
+            this.listViewCol_ID.Text = "EPC号";
+            this.listViewCol_ID.Width = 150;
+            // 
+            // listViewCol_Length
+            // 
+            this.listViewCol_Length.Text = "EPC长度";
+            this.listViewCol_Length.Width = 150;
+            // 
+            // listViewCol_Times
+            // 
+            this.listViewCol_Times.Text = "次数";
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.CheckBox_TID);
+            this.groupBox12.Controls.Add(this.groupBox33);
+            this.groupBox12.Controls.Add(this.button2);
+            this.groupBox12.Controls.Add(this.ComboBox_IntervalTime);
+            this.groupBox12.Controls.Add(this.label23);
+            this.groupBox12.Location = new System.Drawing.Point(246, 337);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(325, 93);
+            this.groupBox12.TabIndex = 44;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "询查标签";
+            // 
+            // CheckBox_TID
+            // 
+            this.CheckBox_TID.AutoSize = true;
+            this.CheckBox_TID.Location = new System.Drawing.Point(226, 61);
+            this.CheckBox_TID.Name = "CheckBox_TID";
+            this.CheckBox_TID.Size = new System.Drawing.Size(66, 16);
+            this.CheckBox_TID.TabIndex = 4;
+            this.CheckBox_TID.Text = "TID询查";
+            this.CheckBox_TID.UseVisualStyleBackColor = true;
+            // 
+            // groupBox33
+            // 
+            this.groupBox33.Controls.Add(this.textBox5);
+            this.groupBox33.Controls.Add(this.label55);
+            this.groupBox33.Controls.Add(this.textBox4);
+            this.groupBox33.Controls.Add(this.label54);
+            this.groupBox33.Location = new System.Drawing.Point(6, 41);
+            this.groupBox33.Name = "groupBox33";
+            this.groupBox33.Size = new System.Drawing.Size(209, 48);
+            this.groupBox33.TabIndex = 3;
+            this.groupBox33.TabStop = false;
+            this.groupBox33.Text = "TID询查条件";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(167, 14);
+            this.textBox5.MaxLength = 2;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(37, 21);
+            this.textBox5.TabIndex = 3;
+            this.textBox5.Text = "04";
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(107, 24);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(65, 12);
+            this.label55.TabIndex = 2;
+            this.label55.Text = "数据字数：";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(64, 14);
+            this.textBox4.MaxLength = 2;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(37, 21);
+            this.textBox4.TabIndex = 1;
+            this.textBox4.Text = "02";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(4, 24);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(65, 12);
+            this.label54.TabIndex = 0;
+            this.label54.Text = "起始地址：";
+            // 
+            // button2
+            // 
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(226, 17);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(93, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "查询标签";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // ComboBox_IntervalTime
+            // 
+            this.ComboBox_IntervalTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBox_IntervalTime.FormattingEnabled = true;
+            this.ComboBox_IntervalTime.Location = new System.Drawing.Point(117, 20);
+            this.ComboBox_IntervalTime.Name = "ComboBox_IntervalTime";
+            this.ComboBox_IntervalTime.Size = new System.Drawing.Size(98, 20);
+            this.ComboBox_IntervalTime.TabIndex = 1;
+            this.ComboBox_IntervalTime.SelectedIndexChanged += new System.EventHandler(this.ComboBox_IntervalTime_SelectedIndexChanged);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(6, 24);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(113, 12);
+            this.label23.TabIndex = 0;
+            this.label23.Text = "询查标签间隔时间：";
+            // 
+            // Timer_Scan
+            // 
+            this.Timer_Scan.Tick += new System.EventHandler(this.Timer_Scan_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 562);
+            this.Controls.Add(this.groupBox12);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.GroupBox1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.GroupBox1.ResumeLayout(false);
             this.GroupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
+            this.groupBox33.ResumeLayout(false);
+            this.groupBox33.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -433,18 +576,31 @@
         private System.Windows.Forms.CheckBox ISO180006B;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox Edit_dmaxfre;
         private System.Windows.Forms.TextBox Edit_powerdBm;
         private System.Windows.Forms.TextBox Edit_Version;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox Edit_dminfre;
         private System.Windows.Forms.TextBox Edit_ComAdr;
         private System.Windows.Forms.TextBox Edit_Type;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.ListView ListView1_EPC;
+        private System.Windows.Forms.ColumnHeader listViewCol_Number;
+        private System.Windows.Forms.ColumnHeader listViewCol_ID;
+        private System.Windows.Forms.ColumnHeader listViewCol_Length;
+        private System.Windows.Forms.ColumnHeader listViewCol_Times;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.CheckBox CheckBox_TID;
+        private System.Windows.Forms.GroupBox groupBox33;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox ComboBox_IntervalTime;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Timer Timer_Scan;
     }
 }
 
