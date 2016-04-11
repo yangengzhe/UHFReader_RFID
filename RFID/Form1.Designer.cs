@@ -74,6 +74,7 @@
             this.ComboBox_IntervalTime = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
             this.Timer_Scan = new System.Windows.Forms.Timer(this.components);
+            this.Log_Box = new System.Windows.Forms.TextBox();
             this.GroupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -170,6 +171,7 @@
             // 
             // ClosePort
             // 
+            this.ClosePort.Enabled = false;
             this.ClosePort.Location = new System.Drawing.Point(3, 325);
             this.ClosePort.Name = "ClosePort";
             this.ClosePort.Size = new System.Drawing.Size(125, 23);
@@ -528,11 +530,22 @@
             // 
             this.Timer_Scan.Tick += new System.EventHandler(this.Timer_Scan_Tick);
             // 
+            // Log_Box
+            // 
+            this.Log_Box.Location = new System.Drawing.Point(258, 436);
+            this.Log_Box.Multiline = true;
+            this.Log_Box.Name = "Log_Box";
+            this.Log_Box.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.Log_Box.Size = new System.Drawing.Size(433, 88);
+            this.Log_Box.TabIndex = 45;
+            this.Log_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Log_Box_KeyPress);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 562);
+            this.Controls.Add(this.Log_Box);
             this.Controls.Add(this.groupBox12);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
@@ -551,6 +564,7 @@
             this.groupBox33.ResumeLayout(false);
             this.groupBox33.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -601,6 +615,7 @@
         private System.Windows.Forms.ComboBox ComboBox_IntervalTime;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Timer Timer_Scan;
+        private System.Windows.Forms.TextBox Log_Box;
     }
 }
 

@@ -39,12 +39,16 @@ namespace RFID
             Timer_Scan.Enabled = false;
             fIsInventoryScan = false;
             button2.Enabled = false;
+            button2.Text = "查询标签";
+            ClosePort.Enabled = false;
+            ComboBox_baud2.SelectedIndex = 3;//初始化波特率选项
         }
         //连接端口
         private void openCom_view()
         {
             Button3.Enabled = true;
             button2.Enabled = true;
+            ClosePort.Enabled = true;
             int i = 0;
             while (i <= 300)
             {
@@ -62,14 +66,13 @@ namespace RFID
             for (i = 1; i < 13; i++)
                 ComboBox_COM.Items.Add(" COM" + Convert.ToString(i));
             ComboBox_COM.SelectedIndex = 0;
-            //RefreshStatus();//状态栏内容
         }
         //加载自动执行
         private void Form1_Load(object sender, EventArgs e)
         {
             InitComList();
             reset_view();
-            ComboBox_baud2.SelectedIndex = 3;//初始化波特率选项
+            Log_Box.AppendText("[" + DateTime.Now.ToLocalTime().ToString() + "] 系统启动");
         }
         //打开端口按钮
         private void OpenPort_Click(object sender, EventArgs e)
@@ -166,6 +169,7 @@ namespace RFID
                 ComboBox_AlreadyOpenCOM.SelectedIndex = ComboBox_AlreadyOpenCOM.SelectedIndex + 1;
                 ComOpen = true;
                 openCom_view();
+                write_log("打开端口：COM" + Convert.ToString(fOpenComIndex));
             }
             if ((fOpenComIndex == -1) && (fCmdRet == 0x30))
                 MessageBox.Show("串口通讯错误", "信息提示");
@@ -219,6 +223,7 @@ namespace RFID
                     ISO180006B.Checked = false;
                     EPCC1G2.Checked = false;
                 }
+                write_log("获得读写器信息");
             }
         }
         //关闭端口按钮
@@ -251,6 +256,9 @@ namespace RFID
                             fOpenComIndex = frmcomportindex;
                             Button3_Click(sender, e); //自动执行读取写卡器信息
                         }
+                        else
+                            reset_view();
+                        write_log("关闭端口：COM" + port);
                     }
                     else
                         MessageBox.Show("串口通讯错误", "信息提示");
@@ -266,7 +274,6 @@ namespace RFID
             {
                 if (Timer_Scan.Enabled)
                     button2_Click(sender, e); //关闭查询
-                reset_view();
             }
         }
         //选择间隔时间
@@ -386,12 +393,14 @@ namespace RFID
                 ListView1_EPC.Items.Clear();
                 epcs.Clear();
                 button2.Text = "停止";
+                write_log("开始查询 时间间隔：" + ComboBox_IntervalTime.SelectedItem.ToString());
             }else//停止查询
             {
                 textBox4.Enabled = true;
                 textBox5.Enabled = true;
                 CheckBox_TID.Enabled = true;
                 button2.Text = "查询标签";
+                write_log("关闭查询");
             }
         }
 
@@ -402,6 +411,17 @@ namespace RFID
                 sb.Append(Convert.ToString(b, 16).PadLeft(2, '0'));
             return sb.ToString().ToUpper();
 
+        }
+        //记录日志
+        private void write_log(String msg)
+        {
+            String time = DateTime.Now.ToLocalTime().ToString();
+            Log_Box.AppendText(Environment.NewLine + "[" + time +"] "+msg);
+            Log_Box.ScrollToCaret();
+        }
+        private void Log_Box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
 
 
