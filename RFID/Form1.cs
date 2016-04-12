@@ -450,11 +450,23 @@ namespace RFID
                 KeyValuePair<String, RfidCard> epc = window_epcs.First();
                 RfidCard rc = epc.Value;
                 //do something
-
+                post2web(rc);
                 write_log("新刷卡：" + rc.epc + " 时间：" + util.Long2Time(rc.timestamp));
                 window_epcs.Remove(epc.Key);
             }
             fIsInvoke = false;
+        }
+        //post提交数据
+        private void post2web(RfidCard rc)
+        {
+            string url = "http://localhost/index.php";
+            string data = "epc="+rc.epc+"&time="+rc.timestamp;
+            string result = HttpClientFacde.HttpPost(url, data);
+            if (result == null) write_log("传输出错");
+            else
+            {
+                write_log("传输成功");
+            }
         }
 
     }
