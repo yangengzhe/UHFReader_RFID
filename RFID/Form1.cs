@@ -42,7 +42,7 @@ namespace RFID
             fIsInventoryScan = false;
             fIsInvoke = false;
             button2.Enabled = false;
-            button2.Text = "查询标签";
+            button2.Text = "开始";
             ClosePort.Enabled = false;
             ComboBox_baud2.SelectedIndex = 3;//初始化波特率选项
         }
@@ -417,7 +417,7 @@ namespace RFID
                 textBox4.Enabled = true;
                 textBox5.Enabled = true;
                 CheckBox_TID.Enabled = true;
-                button2.Text = "查询标签";
+                button2.Text = "开始";
                 write_log("关闭查询");
             }
         }

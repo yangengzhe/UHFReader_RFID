@@ -76,11 +76,20 @@
             this.label23 = new System.Windows.Forms.Label();
             this.Timer_Scan = new System.Windows.Forms.Timer(this.components);
             this.Log_Box = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.checkBox_network = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.radioButton_get = new System.Windows.Forms.RadioButton();
+            this.radioButton_post = new System.Windows.Forms.RadioButton();
             this.GroupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.groupBox33.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // GroupBox1
@@ -432,7 +441,7 @@
             // 
             // groupBox12
             // 
-            this.groupBox12.Controls.Add(this.CheckBox_TID);
+            this.groupBox12.Controls.Add(this.groupBox3);
             this.groupBox12.Controls.Add(this.groupBox33);
             this.groupBox12.Controls.Add(this.button2);
             this.groupBox12.Controls.Add(this.ComboBox_IntervalTime);
@@ -447,7 +456,7 @@
             // CheckBox_TID
             // 
             this.CheckBox_TID.AutoSize = true;
-            this.CheckBox_TID.Location = new System.Drawing.Point(226, 61);
+            this.CheckBox_TID.Location = new System.Drawing.Point(224, 18);
             this.CheckBox_TID.Name = "CheckBox_TID";
             this.CheckBox_TID.Size = new System.Drawing.Size(66, 16);
             this.CheckBox_TID.TabIndex = 4;
@@ -456,20 +465,21 @@
             // 
             // groupBox33
             // 
+            this.groupBox33.Controls.Add(this.CheckBox_TID);
             this.groupBox33.Controls.Add(this.textBox5);
             this.groupBox33.Controls.Add(this.label55);
             this.groupBox33.Controls.Add(this.textBox4);
             this.groupBox33.Controls.Add(this.label54);
-            this.groupBox33.Location = new System.Drawing.Point(6, 41);
+            this.groupBox33.Location = new System.Drawing.Point(5, 45);
             this.groupBox33.Name = "groupBox33";
-            this.groupBox33.Size = new System.Drawing.Size(209, 48);
+            this.groupBox33.Size = new System.Drawing.Size(298, 42);
             this.groupBox33.TabIndex = 3;
             this.groupBox33.TabStop = false;
             this.groupBox33.Text = "TID询查条件";
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(167, 14);
+            this.textBox5.Location = new System.Drawing.Point(183, 16);
             this.textBox5.MaxLength = 2;
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(37, 21);
@@ -479,7 +489,7 @@
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(107, 24);
+            this.label55.Location = new System.Drawing.Point(114, 20);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(65, 12);
             this.label55.TabIndex = 2;
@@ -487,7 +497,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(64, 14);
+            this.textBox4.Location = new System.Drawing.Point(73, 16);
             this.textBox4.MaxLength = 2;
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(37, 21);
@@ -497,7 +507,7 @@
             // label54
             // 
             this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(4, 24);
+            this.label54.Location = new System.Drawing.Point(4, 20);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(65, 12);
             this.label54.TabIndex = 0;
@@ -506,11 +516,11 @@
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(226, 17);
+            this.button2.Location = new System.Drawing.Point(729, 24);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(93, 23);
+            this.button2.Size = new System.Drawing.Size(62, 52);
             this.button2.TabIndex = 2;
-            this.button2.Text = "查询标签";
+            this.button2.Text = "开始";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -518,9 +528,9 @@
             // 
             this.ComboBox_IntervalTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBox_IntervalTime.FormattingEnabled = true;
-            this.ComboBox_IntervalTime.Location = new System.Drawing.Point(117, 20);
+            this.ComboBox_IntervalTime.Location = new System.Drawing.Point(125, 19);
             this.ComboBox_IntervalTime.Name = "ComboBox_IntervalTime";
-            this.ComboBox_IntervalTime.Size = new System.Drawing.Size(98, 20);
+            this.ComboBox_IntervalTime.Size = new System.Drawing.Size(170, 20);
             this.ComboBox_IntervalTime.TabIndex = 1;
             this.ComboBox_IntervalTime.SelectedIndexChanged += new System.EventHandler(this.ComboBox_IntervalTime_SelectedIndexChanged);
             // 
@@ -547,6 +557,88 @@
             this.Log_Box.TabIndex = 45;
             this.Log_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Log_Box_KeyPress);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.radioButton_post);
+            this.groupBox3.Controls.Add(this.radioButton_get);
+            this.groupBox3.Controls.Add(this.textBox2);
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.checkBox_network);
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Location = new System.Drawing.Point(309, 19);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(414, 68);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "网络设置";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(55, 17);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(291, 21);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "http://localhost/index.php";
+            // 
+            // checkBox_network
+            // 
+            this.checkBox_network.AutoSize = true;
+            this.checkBox_network.Location = new System.Drawing.Point(360, 19);
+            this.checkBox_network.Name = "checkBox_network";
+            this.checkBox_network.Size = new System.Drawing.Size(48, 16);
+            this.checkBox_network.TabIndex = 5;
+            this.checkBox_network.Text = "联网";
+            this.checkBox_network.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(8, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 12);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "网址：";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(8, 46);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(41, 12);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "参数：";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(55, 43);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(229, 21);
+            this.textBox2.TabIndex = 7;
+            this.textBox2.Text = "epc={epc}&time={time}";
+            // 
+            // radioButton_get
+            // 
+            this.radioButton_get.AutoSize = true;
+            this.radioButton_get.Checked = true;
+            this.radioButton_get.Location = new System.Drawing.Point(305, 47);
+            this.radioButton_get.Name = "radioButton_get";
+            this.radioButton_get.Size = new System.Drawing.Size(41, 16);
+            this.radioButton_get.TabIndex = 8;
+            this.radioButton_get.TabStop = true;
+            this.radioButton_get.Text = "GET";
+            this.radioButton_get.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_post
+            // 
+            this.radioButton_post.AutoSize = true;
+            this.radioButton_post.Location = new System.Drawing.Point(360, 47);
+            this.radioButton_post.Name = "radioButton_post";
+            this.radioButton_post.Size = new System.Drawing.Size(47, 16);
+            this.radioButton_post.TabIndex = 9;
+            this.radioButton_post.Text = "POST";
+            this.radioButton_post.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -570,6 +662,8 @@
             this.groupBox12.PerformLayout();
             this.groupBox33.ResumeLayout(false);
             this.groupBox33.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -624,6 +718,14 @@
         private System.Windows.Forms.Timer Timer_Scan;
         private System.Windows.Forms.TextBox Log_Box;
         private System.Windows.Forms.ColumnHeader listViewCol_timestamp;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox checkBox_network;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.RadioButton radioButton_post;
+        private System.Windows.Forms.RadioButton radioButton_get;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 
