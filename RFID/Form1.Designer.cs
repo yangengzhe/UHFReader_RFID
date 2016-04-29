@@ -77,7 +77,7 @@
             this.Timer_Scan = new System.Windows.Forms.Timer(this.components);
             this.Log_Box = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.text_URL = new System.Windows.Forms.TextBox();
             this.checkBox_network = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -565,7 +565,7 @@
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.checkBox_network);
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.text_URL);
             this.groupBox3.Location = new System.Drawing.Point(309, 19);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(414, 68);
@@ -573,13 +573,13 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "网络设置";
             // 
-            // textBox1
+            // text_URL
             // 
-            this.textBox1.Location = new System.Drawing.Point(55, 17);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(291, 21);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "http://localhost/index.php";
+            this.text_URL.Location = new System.Drawing.Point(55, 17);
+            this.text_URL.Name = "text_URL";
+            this.text_URL.Size = new System.Drawing.Size(291, 21);
+            this.text_URL.TabIndex = 0;
+            this.text_URL.Text = "http://localhost/index.php";
             // 
             // checkBox_network
             // 
@@ -720,7 +720,7 @@
         private System.Windows.Forms.ColumnHeader listViewCol_timestamp;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox checkBox_network;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox text_URL;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RadioButton radioButton_post;

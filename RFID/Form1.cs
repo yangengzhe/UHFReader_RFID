@@ -450,7 +450,10 @@ namespace RFID
                 KeyValuePair<String, RfidCard> epc = window_epcs.First();
                 RfidCard rc = epc.Value;
                 //do something
-                post2web(rc);
+                if (checkBox_network.Checked && radioButton_get.Checked)
+                    get2web(rc);
+                else if (checkBox_network.Checked && radioButton_post.Checked)
+                    post2web(rc);
                 write_log("新刷卡：" + rc.epc + " 时间：" + util.Long2Time(rc.timestamp));
                 window_epcs.Remove(epc.Key);
             }
@@ -459,8 +462,8 @@ namespace RFID
         //post提交数据
         private void post2web(RfidCard rc)
         {
-            string url = "http://localhost/index.php";
-            string data = "epc="+rc.epc+"&time="+rc.timestamp;
+            string url = text_URL.Text;
+            string data = "epc=" + rc.epc + "&time=" + rc.timestamp;
             string result = HttpClientFacde.HttpPost(url, data);
             if (result == null) write_log("传输出错");
             else
@@ -468,6 +471,17 @@ namespace RFID
                 write_log("传输成功");
             }
         }
-
+        //get提交数据
+        private void get2web(RfidCard rc)
+        {
+            string url = text_URL.Text;
+            string data = "epc=" + rc.epc + "&time=" + rc.timestamp;
+            string result = HttpClientFacde.HttpGet(url, data);
+            if (result == null) write_log("传输出错");
+            else
+            {
+                write_log("传输成功");
+            }
+        }
     }
 }
