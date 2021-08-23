@@ -1,0 +1,2 @@
+# UHFReader_RFID
+基于C#开发的RFID读卡器上位机客户端，对卡的EPC信息进行读取采集并传输。通用的物联网RFID采集模块
